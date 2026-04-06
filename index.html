@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PlayCanvas GSplat Viewer</title>
-    <script type="module" crossorigin src="./assets/index-CnzLhbsh.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-TzBodORk.css">
+    <script type="module" crossorigin src="./assets/index-DZe5OJzy.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Lm4TccJE.css">
   </head>
   <body>
     <canvas id="app"></canvas>
@@ -18,8 +18,13 @@
         Scale
         <input id="scene-scale-input" type="number" value="1" min="0.01" step="0.1" />
       </label>
+      
+      <label for="cut-plane-toggle" id="cut-plane-toggle-control">
+        <input id="cut-plane-toggle" type="checkbox" />
+        Cut Plane
+      </label>
       <button id="measure-undo" type="button" hidden>Del Last</button>
-      <button id="help-toggle" type="button" aria-label="Help">?</button>
+      <button id="fullscreen-toggle" type="button" aria-label="Toggle fullscreen" title="Toggle fullscreen">⤢</button>
     </div>
     <div id="help-panel" hidden>
       <button id="help-close" type="button" aria-label="Close help">x</button>
@@ -28,8 +33,17 @@
       <p><strong>Focus:</strong> Double-click or double-tap a splat point to focus camera there.</p>
       <p><strong>Measure Mode:</strong> Enable <strong>Measure</strong>, single-click one splat point, then single-click another to create a measurement.</p>
       <p><strong>Measure Tools:</strong> Use <strong>Del Last</strong> to remove the latest measurement. Turning off Measure keeps existing measurements.</p>
+      <p><strong>Cut Plane:</strong> Enable <strong>Cut Plane</strong>, then drag a colored axis line to move along that axis, or drag the axis tip to rotate around that axis.</p>
       <p><strong>Tips:</strong> Click directly on the splat to place points. Dragging rotates the camera and does not create a measurement.</p>
     </div>
-    <div id="hud">Loading splat.sog...</div>
+    <div id="hud">Loading splat.sog...</div>
+    <div id="bottom-controls">
+      <label for="camera-fov-input" id="camera-fov-control-bottom">
+        FOV
+        <input id="camera-fov-input" type="range" value="45" min="30" max="120" step="1" />
+        <span id="camera-fov-value">45</span>
+      </label>
+      <button id="help-toggle" type="button" aria-label="Help">?</button>
+    </div>
   </body>
 </html>
