@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PlayCanvas GSplat Viewer</title>
-    <script type="module" crossorigin src="./assets/index-DZe5OJzy.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Lm4TccJE.css">
+    <script type="module" crossorigin src="./assets/index-Bc784RCw.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BO9jGDBp.css">
   </head>
   <body>
     <canvas id="app"></canvas>
@@ -30,14 +30,18 @@
       <button id="help-close" type="button" aria-label="Close help">x</button>
       <h2>Viewer Help</h2>
       <p><strong>Camera:</strong> Left drag rotate, right drag pan, mouse wheel zoom, WASD move. On touch: one-finger drag rotate, two-finger drag pan, and pinch zoom.</p>
-      <p><strong>Focus:</strong> Double-click or double-tap a splat point to focus camera there.</p>
-      <p><strong>Measure Mode:</strong> Enable <strong>Measure</strong>, single-click one splat point, then single-click another to create a measurement.</p>
+      <p><strong>Focus:</strong> Double-click or double-tap a scene point to focus camera there.</p>
+      <p><strong>Measure Mode:</strong> Enable <strong>Measure</strong>, single-click one scene point, then single-click another to create a measurement.</p>
       <p><strong>Measure Tools:</strong> Use <strong>Del Last</strong> to remove the latest measurement. Turning off Measure keeps existing measurements.</p>
       <p><strong>Cut Plane:</strong> Enable <strong>Cut Plane</strong>, then drag a colored axis line to move along that axis, or drag the axis tip to rotate around that axis.</p>
-      <p><strong>Tips:</strong> Click directly on the splat to place points. Dragging rotates the camera and does not create a measurement.</p>
+      <p><strong>Tips:</strong> Click directly on the visible scene to place points. Dragging rotates the camera and does not create a measurement.</p>
     </div>
     <div id="hud">Loading splat.sog...</div>
     <div id="bottom-controls">
+      <label for="glb-mode-toggle" id="glb-mode-control-bottom">
+        <input id="glb-mode-toggle" type="checkbox" />
+        GLB Mesh
+      </label>
       <label for="camera-fov-input" id="camera-fov-control-bottom">
         FOV
         <input id="camera-fov-input" type="range" value="45" min="30" max="120" step="1" />
