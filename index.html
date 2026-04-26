@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GroundCentral Scene Viewer</title>
-    <script type="module" crossorigin src="./assets/index-BXTKDsYI.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CQeyMHm6.css">
+    <script type="module" crossorigin src="./assets/index-_EN0wCO-.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-D38P6bYh.css">
   </head>
   <body>
     <canvas id="app"></canvas>
@@ -37,6 +37,13 @@
       <p><strong>Cut Plane:</strong> Enable <strong>Cut Plane</strong>, then drag a colored axis line to move along that axis, or drag the axis tip to rotate around that axis.</p>
       <p><strong>Tips:</strong> Click directly on the visible scene to place points. Small accidental pointer movement during point placement will not rotate the camera — only click-and-drag will rotate. Dragging (hold + move) after selection rotates the camera; use quick taps to place points.</p>
     </div>
+    <div id="camera-image-modal" hidden>
+      <div id="camera-image-panel">
+        <button id="camera-image-close" type="button" aria-label="Close camera image">x</button>
+        <h2 id="camera-image-title">Camera image</h2>
+        <img id="camera-image-element" alt="Selected camera capture" />
+      </div>
+    </div>
     <div id="hud">Loading splat.sog...</div>
     <div id="forward-speed-control" aria-label="Forward speed control">
       <span id="forward-speed-label">Move</span>
@@ -56,6 +63,10 @@
       <label for="glb-mode-toggle" id="glb-mode-control-bottom">
         <input id="glb-mode-toggle" type="checkbox" />
         GLB Mesh
+      </label>
+      <label for="camera-markers-toggle" id="camera-markers-control-bottom">
+        <input id="camera-markers-toggle" type="checkbox" checked />
+        Cameras
       </label>
       <label for="camera-fov-input" id="camera-fov-control-bottom">
         FOV
