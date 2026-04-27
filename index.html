@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GroundCentral Scene Viewer</title>
-    <script type="module" crossorigin src="./assets/index-_EN0wCO-.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-D38P6bYh.css">
+    <script type="module" crossorigin src="./assets/index-DA1fT97M.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DdpMKbDD.css">
   </head>
   <body>
     <canvas id="app"></canvas>
@@ -14,14 +14,16 @@
         <input id="measure-mode-toggle" type="checkbox" />
         Measure
       </label>
-      <label for="scene-scale-input" id="scene-scale-control">
-        Scale
-        <input id="scene-scale-input" type="number" value="1" min="0.01" step="0.1" />
-      </label>
-      
+
       <label for="cut-plane-toggle" id="cut-plane-toggle-control">
         <input id="cut-plane-toggle" type="checkbox" />
-        Cut Plane
+        Cut Tool
+      </label>
+      <label for="cut-mode-select" id="cut-mode-select-control">
+        <select id="cut-mode-select">
+          <option value="plane">Plane</option>
+          <option value="box">Box</option>
+        </select>
       </label>
       <button id="measure-undo" type="button" hidden>Del Last</button>
       <button id="fullscreen-toggle" type="button" aria-label="Toggle fullscreen" title="Toggle fullscreen">⤢</button>
@@ -34,7 +36,7 @@
       <p><strong>Measure Mode:</strong> Enable <strong>Measure</strong>, then single-click to add points to a polyline. Each click creates a new point; segment distances and interior angles are shown automatically. Right-click (mouse) or a quick two-finger tap (touch) finalizes the current polyline. Turning off Measure also finalizes any pending polyline.</p>
       <p><strong>Measure Tools:</strong> Use <strong>Del Last</strong> to remove the latest measurement. Drag a gizmo axis to move a specific point; right-click drag will not finalize — only a quick right-click (no drag) or two-finger tap finalizes. If there is no pending polyline, right-click or two-finger tap cycles selection through the points of the last measurement.</p>
       <p><strong>Move Slider:</strong> Drag the bottom-left vertical slider up/down for forward/backward movement. Releasing it returns speed to neutral.</p>
-      <p><strong>Cut Plane:</strong> Enable <strong>Cut Plane</strong>, then drag a colored axis line to move along that axis, or drag the axis tip to rotate around that axis.</p>
+      <p><strong>Cut Tool:</strong> Enable <strong>Cut Tool</strong> and choose <strong>Plane</strong> or <strong>Box</strong>. Plane: drag a colored axis line to move or axis tip to rotate. Box: drag RGB axis lines to move along world X/Y/Z, drag local axis tips to rotate, and drag yellow face handles to move each face along its normal.</p>
       <p><strong>Tips:</strong> Click directly on the visible scene to place points. Small accidental pointer movement during point placement will not rotate the camera — only click-and-drag will rotate. Dragging (hold + move) after selection rotates the camera; use quick taps to place points.</p>
     </div>
     <div id="camera-image-modal" hidden>
@@ -44,6 +46,29 @@
         <img id="camera-image-element" alt="Selected camera capture" />
       </div>
     </div>
+      <div id="options-panel" hidden>
+        <button id="options-close" type="button" aria-label="Close options">x</button>
+        <h2>Options</h2>
+        <div id="options-content">
+          <label for="scene-scale-input" id="scene-scale-control">
+            Scale
+            <input id="scene-scale-input" type="number" value="1" min="0.01" step="0.1" />
+          </label>
+          <label for="glb-mode-toggle" id="glb-mode-control-bottom">
+            <input id="glb-mode-toggle" type="checkbox" />
+            GLB Mesh
+          </label>
+          <label for="camera-markers-toggle" id="camera-markers-control-bottom">
+            <input id="camera-markers-toggle" type="checkbox" checked />
+            Cameras
+          </label>
+          <label for="camera-fov-input" id="camera-fov-control-bottom">
+            FOV
+            <input id="camera-fov-input" type="range" value="45" min="30" max="120" step="1" />
+            <span id="camera-fov-value">45</span>
+          </label>
+        </div>
+      </div>
     <div id="hud">Loading splat.sog...</div>
     <div id="forward-speed-control" aria-label="Forward speed control">
       <span id="forward-speed-label">Move</span>
@@ -60,20 +85,8 @@
       </div>
     </div>
     <div id="bottom-controls">
-      <label for="glb-mode-toggle" id="glb-mode-control-bottom">
-        <input id="glb-mode-toggle" type="checkbox" />
-        GLB Mesh
-      </label>
-      <label for="camera-markers-toggle" id="camera-markers-control-bottom">
-        <input id="camera-markers-toggle" type="checkbox" checked />
-        Cameras
-      </label>
-      <label for="camera-fov-input" id="camera-fov-control-bottom">
-        FOV
-        <input id="camera-fov-input" type="range" value="45" min="30" max="120" step="1" />
-        <span id="camera-fov-value">45</span>
-      </label>
       <button id="download-scene" type="button">Download</button>
+      <button id="options-toggle" type="button" aria-label="Options">Options</button>
       <button id="help-toggle" type="button" aria-label="Help">?</button>
     </div>
   </body>
